@@ -362,7 +362,9 @@ console.log(objName); // 'Alice'
 # Chaînes de caractères
  
 ## `split()` - un ciseau qui coupe une chaîne là où un caractère apparaît et produit un tableau
- 
+```javascript
+Description : `split(separator, limit?)` divise une chaîne en sous-chaînes selon le séparateur et renvoie un tableau. Le second argument optionnel `limit` restreint le nombre d'éléments retournés.
+
 ```javascript
 const s = 'a,b,c';
 const parts = s.split(',');
@@ -370,7 +372,9 @@ console.log(parts); // ['a','b','c']
 ```
  
 ## `trim()`, `trimStart()` et `trimEnd()` - épuration des espaces en trop dans une chaîne (trimming)
- 
+```javascript
+Description : `trim()` supprime les espaces en début et fin d'une chaîne. `trimStart()` et `trimEnd()` ne suppriment que le début ou la fin respectivement. Utile pour nettoyer les entrées utilisateur.
+
 ```javascript
 const t = '  hello  ';
 const tTrim = t.trim(); // 'hello'
@@ -382,7 +386,9 @@ console.log(tEnd);
 ```
  
 ## `padStart()` et `padEnd()` - aligner le contenu dans une chaîne de caractères
- 
+```javascript
+Description : `padStart(targetLength, padString)` et `padEnd(targetLength, padString)` complètent une chaîne par la gauche ou la droite pour atteindre la longueur cible. Utile pour aligner ou formater des identifiants.
+
 ```javascript
 const padA = '5'.padStart(3, '0'); // '005'
 const padB = '5'.padEnd(3, '-'); // '5--'
@@ -395,14 +401,18 @@ console.log(padB);
 # Console
  
 ## `console.log()` - Afficher un message sur la console
- 
+```javascript
+Description : `console.log()` affiche des informations sur la console du navigateur ou du terminal. Utile pour le débogage et l'affichage d'états intermédiaires. Ne renvoie pas de valeur significative.
+
 ```javascript
 const greeting = 'Coucou !';
 console.log(greeting);
 ```
  
 ## `console.info()`, `warn()` et `error()` - Afficher un message sur la console (filtrables)
- 
+```javascript
+Description : `console.info()`, `console.warn()` et `console.error()` affichent des messages avec des niveaux distincts (info, avertissement, erreur). Les environnements peuvent filtrer ces niveaux.
+
 ```javascript
 const info = 'Info';
 const warnMsg = 'Attention';
@@ -413,17 +423,21 @@ console.error(errMsg);
 ```
  
 ## `console.table()` - Afficher tout un tableau ou un objet sur la console
- 
+```javascript
+Description : `console.table()` affiche un tableau ou un objet sous forme tabulaire, pratique pour visualiser des données structurées (colonnes/ligne).
+
 ```javascript
 const tableData = [
-    { nom: 'Alice', age: 30 },
-    { nom: 'Bob', age: 25 },
+  { nom: 'Alice', age: 30 },
+  { nom: 'Bob', age: 25 },
 ];
 console.table(tableData);
 ```
  
 ## `console.time()`, `timeLog()` et `timeEnd()` - Chronométrer une durée d'exécution
- 
+```javascript
+Description : `console.time(label)` démarre un chronomètre nommé, `console.timeLog(label)` affiche un point intermédiaire, et `console.timeEnd(label)` arrête et affiche la durée écoulée. Utile pour mesurer la performance.
+
 ```javascript
 console.time('op');
 // ... faire quelque chose
@@ -436,40 +450,49 @@ console.timeEnd('op');
 # Tableaux
  
 ## `forEach` - parcourir les éléments d'un tableau
- 
+```javascript
+Description : `forEach(fn)` exécute la fonction fournie pour chaque élément du tableau. C'est une méthode de parcours destinée aux effets de bord (affichage, mutation). Elle ne renvoie pas de nouveau tableau et ne peut pas être interrompue avec un `return` pour sortir.
+
 ```javascript
 ['croissant', 'gateau', 'pain'].forEach((item) => {
-    console.log(item); // Affiche chaque élément : 'croissant', 'gateau', 'pain'
+  console.log(item); // Affiche chaque élément : 'croissant', 'gateau', 'pain'
 });
 ```
  
 ## `entries()` - parcourir les couples index/valeurs d'un tableau
- 
+Description : `entries()` retourne un itérateur produisant des paires `[index, valeur]`. Utile quand on veut à la fois l'indice et la valeur. Pour récupérer toutes les paires sous forme de tableau, utilisez le spread ou `Array.from()`.
+
 ```javascript
 for (const [index, item] of ['croissant', 'gateau', 'pain'].entries()) {
-    console.log(`Index ${index}: ${item}`); // Affiche : "Index 0: croissant", "Index 1: gateau", "Index 2: pain"
+  console.log(`Index ${index}: ${item}`); // Affiche : "Index 0: croissant", "Index 1: gateau", "Index 2: pain"
 }
+console.log([...['croissant','gateau','pain'].entries()]); // [[0,'croissant'],[1,'gateau'],[2,'pain']]
 ```
  
 ## `in` - parcourir les clés d'un tableau
- 
+```javascript
+Description : `for...in` itère sur les clés énumérables d'un objet (pour un tableau : les indices). Il est généralement déconseillé pour les tableaux quand l'ordre ou les propriétés héritées peuvent poser problème ; préférez `for...of` ou les méthodes de tableau.
+
 ```javascript
 const desserts = ['croissant', 'gateau'];
 for (const index in desserts) {
-    console.log(index); // Affiche les indices : '0', '1'
+  console.log(index); // Affiche les indices : '0', '1'
 }
 ```
  
 ## `of` - parcourir les valeurs d'un tableau
- 
+```javascript
+Description : `for...of` parcourt les valeurs d'un itérable (tableau, Map, Set, etc.). C'est la boucle recommandée pour itérer sur les éléments eux-mêmes.
+
 ```javascript
 for (const item of ['croissant', 'gateau']) {
-    console.log(item); // Affiche : 'croissant', 'gateau'
+  console.log(item); // Affiche : 'croissant', 'gateau'
 }
 ```
  
 ## `find()` - premier élément qui satisfait une condition
- 
+Description : `find(predicate)` renvoie le premier élément satisfaisant la fonction test, ou `undefined` si aucun élément ne correspond. Ne renvoie pas l'indice.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const found = desserts.find((item) => item.startsWith('g')); // Trouve 'gateau'
@@ -477,7 +500,8 @@ console.log(found);
 ```
  
 ## `findIndex()` - premier index qui satisfait une condition
- 
+Description : `findIndex(predicate)` renvoie l'index du premier élément qui satisfait le test, ou `-1` si aucun élément ne correspond.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const index = desserts.findIndex((item) => item === 'gateau'); // Trouve l'index 1
@@ -485,7 +509,8 @@ console.log(index);
 ```
  
 ## `indexOf()` et `lastIndexOf()` - premier/dernier élément qui correspond
- 
+Description : `indexOf(value)` et `lastIndexOf(value)` retournent respectivement la première et la dernière position d'une valeur en utilisant la comparaison stricte (`===`). Elles renvoient `-1` si la valeur n'est pas trouvée.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'croissant'];
 const firstIndex = desserts.indexOf('croissant'); // 0
@@ -494,7 +519,8 @@ console.log(firstIndex, lastIndex);
 ```
  
 ## `push()`, `pop()`, `shift()` et `unshift()` - ajouter/supprime au début/fin dans un tableau
- 
+Description : ces méthodes modifient (mutent) le tableau en place : `push`/`unshift` ajoutent des éléments (fin/début), `pop`/`shift` retirent et retournent un élément (fin/début).
+
 ```javascript
 const desserts = ['croissant', 'gateau'];
 desserts.push('pain'); // Ajoute à la fin : ['croissant', 'gateau', 'pain']
@@ -505,7 +531,8 @@ console.log(desserts);
 ```
  
 ## `slice()` - ne conserver que certaines lignes d'un tableau
- 
+Description : `slice(start, end)` crée un NOUVEAU tableau contenant une portion (start inclusive, end exclusive). Ne modifie pas le tableau source.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain', 'tarte'];
 const sliced = desserts.slice(1, 3); // ['gateau', 'pain']
@@ -513,7 +540,8 @@ console.log(sliced);
 ```
  
 ## `splice()` - supprimer/insérer/remplacer des valeurs dans un tableau
- 
+Description : `splice(start, deleteCount, ...items)` modifie le tableau en place : supprime `deleteCount` éléments à partir de `start`, et insère `items` à cet emplacement. Renvoie les éléments supprimés.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 desserts.splice(1, 1, 'tarte'); // Remplace 'gateau' par 'tarte' : ['croissant', 'tarte', 'pain']
@@ -521,33 +549,72 @@ console.log(desserts);
 ```
  
 ## `concat()` - joindre deux tableaux
- 
+Description : `concat()` crée et renvoie un NOUVEAU tableau contenant les éléments du tableau appelant suivis des éléments fournis en arguments. Elle ne modifie pas les tableaux sources (opération non mutative). Les arguments peuvent être des valeurs simples ou des tableaux — si un argument est un tableau, ses éléments sont copiés (copie superficielle).
+
+Complexité : proportionnelle à la taille des tableaux concaténés (O(n)).
+
+Exemples :
+
 ```javascript
 const desserts1 = ['croissant', 'gateau'];
 const desserts2 = ['pain', 'tarte'];
 const allDesserts = desserts1.concat(desserts2); // ['croissant', 'gateau', 'pain', 'tarte']
 console.log(allDesserts);
+
+// concat accepte aussi plusieurs arguments
+const merged = desserts1.concat(['glace'], desserts2); // ['croissant','gateau','glace','pain','tarte']
+console.log(merged);
 ```
  
 ## `join()` - joindre des chaînes de caractères
- 
+Description : `join()` transforme les éléments d'un tableau en une seule chaîne de caractères, séparés par le séparateur fourni (par défaut `,`). Les éléments `null` ou `undefined` sont convertis en chaîne vide. `join()` ne modifie pas le tableau d'origine.
+
+Remarques : si le tableau est vide, `join()` renvoie une chaîne vide. Les éléments sont convertis en chaînes via `toString()` avant la concatenation.
+
+Exemples :
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const joined = desserts.join(', '); // 'croissant, gateau, pain'
 console.log(joined);
+
+const withEmpty = ['a', null, undefined, 'b'];
+console.log(withEmpty.join('-')); // 'a--b' => null/undefined -> '' donc 'a--b'
+console.log([].join('-')); // '' (chaine vide)
 ```
  
-## `keys()` et `values()` - les clés/valeurs d'un objet (Map/Array)
- 
+## `keys()` et `values()` - itérateurs de clés / valeurs (Array / Map)
+
+Description : `keys()` et `values()` retournent des objets itérables (Iterator) — pas des tableaux — qui parcourent respectivement les indices/cles et les valeurs de la collection. Pour obtenir un tableau à partir de l'itérateur, on peut utiliser l'opérateur spread (`[...]`) ou `Array.from()`.
+
+Différences importantes :
+- Pour les `Array`, `keys()` itère les indices (0, 1, 2...), `values()` itère les éléments.
+- Pour une `Map`, `keys()` renvoie les clés telles qu'elles ont été insérées, `values()` les valeurs associées.
+- Pour les objets littéraux (plain objects), utiliser `Object.keys()` / `Object.values()` qui renvoient des tableaux.
+
+Exemples :
+
 ```javascript
+// Array
 const desserts = ['croissant', 'gateau'];
 const keys = [...desserts.keys()]; // [0, 1]
 const values = [...desserts.values()]; // ['croissant', 'gateau']
 console.log(keys, values);
+
+// Map
+const m = new Map([['a', 1], ['b', 2]]);
+console.log([...m.keys()]); // ['a', 'b']
+console.log([...m.values()]); // [1, 2]
+
+// Objet littéral -> utiliser Object.keys / Object.values
+const obj = { x: 10, y: 20 };
+console.log(Object.keys(obj)); // ['x','y']
+console.log(Object.values(obj)); // [10,20]
 ```
  
 ## `includes()` - vérifier si une valeur est présente dans un tableau
- 
+Description : `includes(value)` retourne `true` si le tableau contient la valeur (utilise l'égalité SameValueZero — gère `NaN`).
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const hasGateau = desserts.includes('gateau'); // true
@@ -555,7 +622,8 @@ console.log(hasGateau);
 ```
  
 ## `every()` et `some()` - vérifier si plusieurs valeurs sont toutes/quelques présentes dans un tableau
- 
+Description : `every(predicate)` vérifie que tous les éléments satisfont la condition (renvoie true ou false). `some(predicate)` vérifie qu'au moins un élément satisfait la condition. Ces méthodes s'arrêtent dès que le résultat est déterminé.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const allStrings = desserts.every((item) => typeof item === 'string'); // true
@@ -564,14 +632,16 @@ console.log(allStrings, hasPain);
 ```
  
 ## `fill()` - remplir un tableau avec des valeurs
- 
+Description : `fill(value, start=0, end=array.length)` remplit (mutatif) les éléments du tableau avec `value` entre `start` (inclus) et `end` (exclus).
+
 ```javascript
 const desserts = new Array(3).fill('croissant'); // ['croissant', 'croissant', 'croissant']
 console.log(desserts);
 ```
  
 ## `flat()` - aplatir un tableau
- 
+Description : `flat(depth=1)` renvoie un nouveau tableau aplatissant les sous-tableaux jusqu'à la profondeur `depth` (par défaut 1). Ne modifie pas le tableau d'origine.
+
 ```javascript
 const nestedDesserts = ['croissant', ['gateau', 'pain']];
 const flatDesserts = nestedDesserts.flat(); // ['croissant', 'gateau', 'pain']
@@ -579,15 +649,22 @@ console.log(flatDesserts);
 ```
  
 ## `sort()` - pour trier un tableau
- 
+Description : `sort()` trie le tableau EN PLACE (mutatif). Par défaut il trie selon l'ordre lexicographique des chaînes ; pour trier des nombres, fournissez une fonction de comparaison `(a,b) => a-b`.
+
 ```javascript
 const desserts = ['pain', 'croissant', 'gateau'];
 const sortedDesserts = desserts.sort(); // ['croissant', 'gateau', 'pain']
 console.log(sortedDesserts);
+
+const nums = [3, 1, 10, 2];
+nums.sort(); // incorrect pour nombres : ['1','10','2','3']
+nums.sort((a, b) => a - b); // correcte pour nombres : [1,2,3,10]
+console.log(nums);
 ```
  
 ## `map()` - tableau avec les résultats d'une fonction
- 
+Description : `map(fn)` crée et renvoie un NOUVEAU tableau résultant de l'application de `fn` à chaque élément. N'est pas mutatif.
+
 ```javascript
 const desserts = ['croissant', 'gateau'];
 const upperDesserts = desserts.map((item) => item.toUpperCase()); // ['CROISSANT', 'GATEAU']
@@ -595,7 +672,8 @@ console.log(upperDesserts);
 ```
  
 ## `filter()` - tableau avec les éléments passant un test
- 
+Description : `filter(fn)` crée un NOUVEAU tableau contenant les éléments pour lesquels `fn` retourne `true`. Ne modifie pas l'original.
+
 ```javascript
 const desserts = ['croissant', 'gateau', 'pain'];
 const filteredDesserts = desserts.filter((item) => item.startsWith('g')); // ['gateau']
@@ -617,24 +695,28 @@ console.log(grouped); // { a: ['apple','avocado'], b: ['banana'] }
 ```
  
 ## `flatMap()` - chaînage de map() et flat()
- 
+Description : `flatMap(fn)` applique `fn` à chaque élément puis aplatit d'un niveau le résultat. Équivalent à `arr.map(fn).flat(1)`, mais plus performant.
+
 ```javascript
 const flatMapped = [1, 2].flatMap((x) => [x, x * 2]); // [1,2,2,4]
 console.log(flatMapped);
 ```
  
 ## `reduce()` et `reduceRight()` - réduire un tableau à une seule valeur
- 
+Description : `reduce((acc, val) => ..., initial)` accumule une valeur en parcourant le tableau. Si `initial` est omis, le premier élément du tableau est utilisé comme valeur initiale et la réduction commence au deuxième élément — attention aux tableaux vides (erreur si aucun `initial`).
+
 ```javascript
 const reduced = [1, 2, 3].reduce((sum, x) => sum + x, 0); // 6
 console.log(reduced);
 ```
  
 ## `reverse()` - inverser l'ordre du tableau
- 
+Description : `reverse()` inverse l'ordre des éléments du tableau EN PLACE (mutation). Renvoie le tableau modifié.
+
 ```javascript
 const r = [1, 2, 3];
 r.reverse(); // [3,2,1]
+console.log(r);
 ```
  
 ---
